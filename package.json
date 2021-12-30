@@ -2,11 +2,10 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "nodemon -r esm server.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +19,7 @@
   "homepage": "https://github.com/RjMindroots/datingapp#readme",
   "dependencies": {
     "dotenv": "^10.0.0",
+    "esm": "^3.2.25",
     "express": "^4.17.2",
     "mongoose": "^6.1.4"
   },

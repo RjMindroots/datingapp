@@ -1,11 +1,12 @@
 import express from "express";
-import dotenv from 'dotenv'
+import { APP_PORT, CONNECTION_URL } from "./src/config";
 import mongoose from 'mongoose'
-const env = dotenv.config()
+import routes from './src/routes'
+
 const app = express();
 
 // mongodb connection
-mongoose.connect(`mongodb+srv://admin:mrtech@cluster0.svdho.mongodb.net/datingapp?retryWrites=true&w=majority`, 
+mongoose.connect(`${CONNECTION_URL}`, 
 	{
         useNewUrlParser: true,
         useUnifiedTopology: true
@@ -14,6 +15,8 @@ mongoose.connect(`mongodb+srv://admin:mrtech@cluster0.svdho.mongodb.net/datingap
 	console.log('Mongodb connected!')
 }).catch(err => console.log(err));
 
+//routes
+app.use('/api/admin', routes)
 
 //middleware
 app.use(express.json());
@@ -21,8 +24,8 @@ app.use(express.urlencoded({
   extended: true
 }));
 
-const PORT = process.env.PORT || 4000
-app.listen(PORT, () => {
-    console.log(`app running on ${PORT}`)
+
+app.listen(APP_PORT, () => {
+    console.log(`app running on ${APP_PORT}`)
 })
 
