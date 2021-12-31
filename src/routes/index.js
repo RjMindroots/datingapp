@@ -1,17 +1,10 @@
 import express from "express";
+import {login_controller, register_controller} from '../controller'
 const router = express.Router();
 
-router.post('/register', (req, res) => {
-    const { user_name, user_password } = req.body
-    
-    res.send("working fine")
-})
-
-
-router.post('/login', (req, res) => {
-    const { user_name, user_password } = req.body
-    res.send("working fine")
-})
+//auth routes
+router.post('/register', register_controller.register)
+router.post('/login', login_controller.login)
 
 
 export default router

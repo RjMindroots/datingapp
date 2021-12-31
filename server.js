@@ -8,15 +8,15 @@ const app = express();
 // mongodb connection
 mongoose.connect(`${CONNECTION_URL}`, 
 	{
-        useNewUrlParser: true,
-        useUnifiedTopology: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 	}
 ).then(() => {
 	console.log('Mongodb connected!')
 }).catch(err => console.log(err));
 
 //routes
-app.use('/api/admin', routes)
+app.use('/api', routes)
 
 //middleware
 app.use(express.json());
