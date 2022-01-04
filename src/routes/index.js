@@ -1,6 +1,6 @@
 import express from "express";
 import {login_controller, register_controller, userController, refreshController} from '../controller'
-import {auth} from '../middleware'
+import {auth, admin} from '../middleware'
 const router = express.Router();
 
 //auth routes
