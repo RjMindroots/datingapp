@@ -8,6 +8,8 @@ router.post('/register', register_controller.register)
 router.post('/login', login_controller.login)
 router.post('/refresh', refreshController.refresh)
 router.get('/user', auth, userController.userIdentity)
+router.post('/logout', login_controller.logout)
+
 
 
 export default router
