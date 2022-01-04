@@ -2,6 +2,7 @@ import express from "express";
 import { APP_PORT, CONNECTION_URL } from "./src/config";
 import mongoose from 'mongoose'
 import routes from './src/routes'
+import errorHandler from "./src/middleware/errorHandler";
 
 const app = express();
 
@@ -15,15 +16,16 @@ mongoose.connect(`${CONNECTION_URL}`,
 	console.log('Mongodb connected!')
 }).catch(err => console.log(err));
 
-//routes
-app.use('/api', routes)
-
 //middleware
 app.use(express.json());
 app.use(express.urlencoded({
   extended: true
 }));
 
+//routes
+app.use('/api', routes)
+
+app.use(errorHandler)
 
 app.listen(APP_PORT, () => {
     console.log(`app running on ${APP_PORT}`)

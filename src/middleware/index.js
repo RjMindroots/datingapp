@@ -1,0 +1,1 @@
+export { defaults as errorHandler } from './errorHandler';
