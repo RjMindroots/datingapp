@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors"
 import { APP_PORT, CONNECTION_URL } from "./src/config";
 import mongoose from 'mongoose'
 import cors from 'cors';
@@ -6,6 +7,7 @@ import routes from './src/routes'
 import errorHandler from "./src/middleware/errorHandler";
 
 const app = express();
+app.use(cors())
 
 // mongodb connection
 mongoose.connect(`${CONNECTION_URL}`, 
