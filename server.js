@@ -2,7 +2,6 @@ import express from "express";
 import cors from "cors"
 import { APP_PORT, CONNECTION_URL } from "./src/config";
 import mongoose from 'mongoose'
-import cors from 'cors';
 import routes from './src/routes'
 import errorHandler from "./src/middleware/errorHandler";
 
@@ -21,6 +20,7 @@ mongoose.connect(`${CONNECTION_URL}`,
 
 //middleware
 app.use(cors());
+
 app.use(express.json());
 app.use(express.urlencoded({
   extended: true

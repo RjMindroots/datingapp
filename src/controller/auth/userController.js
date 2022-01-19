@@ -12,6 +12,38 @@ const userController = {
         } catch(err) {
            return next(err);
         }
+    },
+
+    async profile (req, res, next){
+       //requested data valid or not
+        const ProfileSchema = Joi.object({
+            user_name: Joi.string().min(3).required(),
+            gender: Joi.string().required(),
+            city: Joi.string().required(),
+            interestIn: Joi.string().required()
+        })
+
+        const {error} = ProfileSchema.validate(req.body) 
+
+        if(error) {
+            return next(error)
+        } 
+
+        try {
+            const exist = await User.findOne({ _id: req.user._id });
+            if(exist) {
+                console.log("user exist")
+            }else {
+                return next(CustomErrorHandler.notFound());
+            }
+                     
+        }catch (err) {
+            return next(err)
+        }
+
+
+
+
     }
 }
 
